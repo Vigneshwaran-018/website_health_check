@@ -1,0 +1,170 @@
+/**
+ * Global Semantic Color System
+ * Maps semantic colors to specific use cases
+ */
+
+:root {
+  /* Dark Mode Base */
+  --dark-bg-primary: #0f172a;
+  --dark-bg-secondary: #1e293b;
+  --dark-bg-tertiary: #334155;
+  --dark-text-primary: #f1f5f9;
+  --dark-text-secondary: #cbd5e1;
+  --dark-text-tertiary: #94a3b8;
+  
+  /* Attacker View - RED Spectrum */
+  --attacker-critical: #dc2626;
+  --attacker-high: #ef4444;
+  --attacker-medium: #f87171;
+  --attacker-low: #fca5a5;
+  --attacker-accent: #7f1d1d;
+  --attacker-glow: rgba(220, 38, 38, 0.5);
+  
+  /* Defender View - BLUE Spectrum */
+  --defender-critical: #0c4a6e;
+  --defender-high: #0284c7;
+  --defender-medium: #0ea5e9;
+  --defender-low: #06b6d4;
+  --defender-accent: #1e3a8a;
+  --defender-glow: rgba(6, 182, 212, 0.5);
+  
+  /* Risk Levels */
+  --risk-critical: #dc2626;
+  --risk-high: #f97316;
+  --risk-medium: #f59e0b;
+  --risk-low: #22c55e;
+  
+  /* System Colors */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --info: #06b6d4;
+  
+  /* Borders */
+  --border-light: #475569;
+  --border-dark: #1e293b;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 300ms ease-out;
+  --transition-slow: 500ms ease-out;
+}
+
+/* Dark Mode Container */
+.dark {
+  color-scheme: dark;
+}
+
+/* Attacker Mode Styling */
+.attacker-mode {
+  --primary-color: var(--attacker-critical);
+  --accent-color: var(--attacker-high);
+  --glow-color: var(--attacker-glow);
+  --gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #7f1d1d 100%);
+}
+
+.attacker-mode * {
+  --primary-color: var(--attacker-critical);
+}
+
+/* Defender Mode Styling */
+.defender-mode {
+  --primary-color: var(--defender-critical);
+  --accent-color: var(--defender-medium);
+  --glow-color: var(--defender-glow);
+  --gradient: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #0c4a6e 100%);
+}
+
+.defender-mode * {
+  --primary-color: var(--defender-critical);
+}
+
+/* Risk Level Indicators */
+.risk-critical {
+  --risk-color: var(--risk-critical);
+  color: var(--risk-color);
+}
+
+.risk-high {
+  --risk-color: var(--risk-high);
+  color: var(--risk-color);
+}
+
+.risk-medium {
+  --risk-color: var(--risk-medium);
+  color: var(--risk-color);
+}
+
+.risk-low {
+  --risk-color: var(--risk-low);
+  color: var(--risk-color);
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: var(--transition-normal);
+  transition-timing-function: ease-out;
+}
+
+/* Disable transitions for animations */
+.animate-pulse,
+.animate-spin,
+.animate-bounce,
+.animate-shimmer,
+.animate-float,
+.animate-glow-pulse {
+  transition: none;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Section header utility for visible subheadings */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dark-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.section-header .icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+}
+
+.section-header.accent-attacker { color: var(--attacker-critical); }
+.section-header.accent-defender { color: var(--defender-medium); }
+.section-header.accent-neutral { color: var(--system-purple, #8b5cf6); }
+
+/* Ensure section headers remain readable on light backgrounds (cards that use bg-white) */
+.bg-white .section-header,
+.section-header.bg-white,
+.card.bg-white .section-header,
+.rounded-lg.bg-white .section-header {
+  color: #0f172a; /* dark slate for readability */
+}
+
+/* Convenience utility for components using `text-dark` class (non-Tailwind) */
+.text-dark {
+  color: #0f172a !important;
+}
+
+/* Convenience utility for light text when needed */
+.text-light {
+  color: var(--dark-text-primary) !important;
+}
